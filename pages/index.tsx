@@ -2,11 +2,18 @@ import type { NextPage } from "next";
 import firebaseClient from "../firebase/client";
 import { getAuth, signOut } from "firebase/auth";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useRouter } from "next/router";
 
 const auth = getAuth(firebaseClient);
 
 const Home: NextPage = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const router = useRouter();
+
+  const logout = () => {
+    signOut(auth);
+    router.reload();
+  };
 
   if (error) {
     return (
@@ -26,7 +33,7 @@ const Home: NextPage = () => {
     return (
       <div>
         <p>Hello {user.user.displayName}</p>
-        <button onClick={() => signOut(auth)}>Sign Out</button>
+        <button onClick={() => logout()}>Sign Out</button>
       </div>
     );
   }
