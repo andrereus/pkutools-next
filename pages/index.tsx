@@ -33,13 +33,17 @@ const Home: NextPage = () => {
     return (
       <div>
         <p>Hello {user.user.displayName}</p>
-        <button onClick={() => logout()}>Sign Out</button>
+        <button onClick={() => logout()} className="btn">
+          Sign Out
+        </button>
       </div>
     );
   }
   return (
     <div>
-      <button onClick={() => signInWithGoogle()}>Sign In</button>
+      <button onClick={() => signInWithGoogle()} className="btn">
+        Sign In
+      </button>
     </div>
   );
 };
