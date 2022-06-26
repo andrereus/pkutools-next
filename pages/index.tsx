@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const [signInWithGoogle, user, authloading, autherror] =
     useSignInWithGoogle(auth);
   const [snapshots, dbloading, dberror] = useList(
-    ref(database, user?.user.uid + "/ownFood")
+    ref(database, user?.user.uid + "/pheLog")
   );
   const router = useRouter();
 
@@ -52,16 +52,16 @@ const Home: NextPage = () => {
               <table className="table w-full">
                 <thead>
                   <tr>
-                    <th>Icon</th>
                     <th>Name</th>
+                    <th>Weight</th>
                     <th>Phe</th>
                   </tr>
                 </thead>
                 <tbody>
                   {snapshots.map((data) => (
                     <tr key={data.key}>
-                      <td>{data.val().icon}</td>
                       <td>{data.val().name}</td>
+                      <td>{data.val().weight}</td>
                       <td>{data.val().phe}</td>
                     </tr>
                   ))}
